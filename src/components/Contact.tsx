@@ -20,9 +20,9 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "hello@alexrivera.design" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
-    { icon: MapPin, label: "Location", value: "New York, NY" },
+    { icon: Mail, label: "Email", value: "ksmanicosmos@gmail.com" },
+    { icon: Phone, label: "Phone", value: "+91 90806 27377" },
+    { icon: MapPin, label: "Location", value: "Chennai, India" },
   ];
 
   return (
