@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Marquee from "@/components/Marquee";
 import Portfolio from "@/components/Portfolio";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CursorFollower from "@/components/CursorFollower";
@@ -28,6 +29,7 @@ const Index = () => {
         <Services />
         <Marquee />
         <Portfolio />
+        <Testimonials />
         <Contact />
         <Footer />
       </div>
