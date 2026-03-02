@@ -9,6 +9,7 @@ import Portfolio from "@/components/Portfolio";
 import HowWeWork from "@/components/HowWeWork";
 import WhyChooseMe from "@/components/WhyChooseMe";
 import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CursorFollower from "@/components/CursorFollower";
@@ -36,6 +37,7 @@ const Index = () => {
         <HowWeWork />
         <WhyChooseMe />
         <Testimonials />
+        <FAQ />
         <Contact />
         <Footer />
       </div>
