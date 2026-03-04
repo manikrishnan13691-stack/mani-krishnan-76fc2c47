@@ -36,7 +36,7 @@ const Navigation = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
           {/* Logo */}
           <MagneticButton href="#">
-            <img src={logoImg} alt="SK Logo" className="h-20 w-auto" />
+            <img src={logoImg} alt="SK Logo" className="h-16 w-auto" />
           </MagneticButton>
 
           {/* Desktop Navigation */}

@@ -26,7 +26,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <MagneticButton href="#">
-              <img src={logoImg} alt="SK Logo" className="h-20 w-auto" />
+              <img src={logoImg} alt="SK Logo" className="h-16 w-auto" />
             </MagneticButton>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               Creative designer based in Chennai, India — crafting bold visual experiences with 4+ years of expertise.
