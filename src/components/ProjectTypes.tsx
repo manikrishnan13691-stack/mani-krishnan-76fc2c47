@@ -65,19 +65,6 @@ const CircleItem = ({
         onMouseLeave={() => setActiveIndex(null)}
         data-cursor="pointer"
       >
-        {/* Connecting line to center */}
-        <motion.div
-          className="absolute w-px bg-border/40"
-          style={{
-            height: Math.sqrt(x * x + y * y),
-            transformOrigin: "top center",
-            rotate: `${angle + 90}deg`,
-            left: 40,
-            top: 40,
-          }}
-          animate={{ opacity: isActive ? 0.6 : 0.15 }}
-          transition={{ duration: 0.3 }}
-        />
 
         {/* Circle node */}
         <motion.div
