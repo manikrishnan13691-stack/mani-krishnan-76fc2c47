@@ -35,6 +35,7 @@ const Index = () => {
         <CooperationProcess />
         <About />
         <Services />
+        <ProjectTypes />
         <OurApproach />
         <Marquee />
         <Portfolio />
