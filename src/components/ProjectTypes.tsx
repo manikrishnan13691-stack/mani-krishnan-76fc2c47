@@ -65,19 +65,6 @@ const CircleItem = ({
         onMouseLeave={() => setActiveIndex(null)}
         data-cursor="pointer"
       >
-        {/* Connecting line to center */}
-        <motion.div
-          className="absolute w-px bg-border/40"
-          style={{
-            height: Math.sqrt(x * x + y * y),
-            transformOrigin: "top center",
-            rotate: `${angle + 90}deg`,
-            left: 40,
-            top: 40,
-          }}
-          animate={{ opacity: isActive ? 0.6 : 0.15 }}
-          transition={{ duration: 0.3 }}
-        />
 
         {/* Circle node */}
         <motion.div
@@ -160,6 +147,46 @@ const CircleItem = ({
   );
 };
 
+const ConnectionLines = ({
+  total,
+  radius,
+  isInView,
+  activeIndex,
+}: {
+  total: number;
+  radius: number;
+  isInView: boolean;
+  activeIndex: number | null;
+}) => {
+  return (
+    <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+      {Array.from({ length: total }).map((_, index) => {
+        const angle = (index / total) * 360 - 90;
+        const endX = Math.cos((angle * Math.PI) / 180) * radius;
+        const endY = Math.sin((angle * Math.PI) / 180) * radius;
+        const isActive = activeIndex === index;
+        const item = projectTypes[index];
+
+        return (
+          <motion.line
+            key={index}
+            x1="50%"
+            y1="50%"
+            x2={`calc(50% + ${endX}px)`}
+            y2={`calc(50% + ${endY}px)`}
+            stroke={isActive ? item.color : "hsl(0 0% 18%)"}
+            strokeWidth={isActive ? 2 : 1}
+            strokeDasharray={isActive ? "0" : "6 4"}
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={isInView ? { pathLength: 1, opacity: isActive ? 0.8 : 0.25 } : { pathLength: 0, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 * index, ease: "easeOut" }}
+          />
+        );
+      })}
+    </svg>
+  );
+};
+
 const ProjectTypes = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -200,6 +227,15 @@ const ProjectTypes = () => {
 
         {/* Circle Layout */}
         <div className="relative w-full aspect-square max-w-[700px] mx-auto">
+          {/* SVG Connection Lines - Desktop */}
+          <div className="hidden md:block">
+            <ConnectionLines total={projectTypes.length} radius={280} isInView={isInView} activeIndex={activeIndex} />
+          </div>
+          {/* SVG Connection Lines - Mobile */}
+          <div className="block md:hidden">
+            <ConnectionLines total={projectTypes.length} radius={140} isInView={isInView} activeIndex={activeIndex} />
+          </div>
+
           {/* Center hub */}
           <motion.div
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
