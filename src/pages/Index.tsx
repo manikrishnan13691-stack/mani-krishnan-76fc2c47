@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import CooperationProcess from "@/components/CooperationProcess";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import ProjectTypes from "@/components/ProjectTypes";
 import OurApproach from "@/components/OurApproach";
 import Marquee from "@/components/Marquee";
 import Portfolio from "@/components/Portfolio";
