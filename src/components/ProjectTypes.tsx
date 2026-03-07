@@ -196,31 +196,32 @@ const ConnectionLines = ({
                 <motion.circle
                   r={isActive ? 4 : 3}
                   fill={item.color}
-                  initial={{ offsetDistance: "0%" }}
                   animate={{
                     cx: ["50%", `calc(50% + ${endX}px)`, "50%"],
                     cy: ["50%", `calc(50% + ${endY}px)`, "50%"],
+                    r: isActive ? [3, 5, 3] : [2, 4, 2],
+                    opacity: [0.6, 1, 0.6],
                   }}
                   transition={{
-                    duration: 2.5 + index * 0.3,
+                    duration: 5 + index * 0.5,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: index * 0.4,
+                    delay: index * 0.6,
                   }}
                 />
                 <motion.circle
-                  r={isActive ? 8 : 6}
                   fill={`url(#dot-glow-${index})`}
-                  opacity={0.5}
                   animate={{
                     cx: ["50%", `calc(50% + ${endX}px)`, "50%"],
                     cy: ["50%", `calc(50% + ${endY}px)`, "50%"],
+                    r: isActive ? [6, 12, 6] : [4, 10, 4],
+                    opacity: [0.2, 0.6, 0.2],
                   }}
                   transition={{
-                    duration: 2.5 + index * 0.3,
+                    duration: 5 + index * 0.5,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: index * 0.4,
+                    delay: index * 0.6,
                   }}
                 />
               </>
