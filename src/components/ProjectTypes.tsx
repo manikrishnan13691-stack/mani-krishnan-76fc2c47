@@ -161,6 +161,14 @@ const ConnectionLines = ({
 }) => {
   return (
     <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+      <defs>
+        {projectTypes.map((item, index) => (
+          <radialGradient key={`glow-${index}`} id={`dot-glow-${index}`}>
+            <stop offset="0%" stopColor={item.color} stopOpacity="1" />
+            <stop offset="100%" stopColor={item.color} stopOpacity="0" />
+          </radialGradient>
+        ))}
+      </defs>
       {Array.from({ length: total }).map((_, index) => {
         const angle = (index / total) * 360 - 90;
         const endX = Math.cos((angle * Math.PI) / 180) * radius;
@@ -169,19 +177,55 @@ const ConnectionLines = ({
         const item = projectTypes[index];
 
         return (
-          <motion.line
-            key={index}
-            x1="50%"
-            y1="50%"
-            x2={`calc(50% + ${endX}px)`}
-            y2={`calc(50% + ${endY}px)`}
-            stroke={isActive ? item.color : "hsl(0 0% 18%)"}
-            strokeWidth={isActive ? 2 : 1}
-            strokeDasharray={isActive ? "0" : "6 4"}
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={isInView ? { pathLength: 1, opacity: isActive ? 0.8 : 0.25 } : { pathLength: 0, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 * index, ease: "easeOut" }}
-          />
+          <g key={index}>
+            <motion.line
+              x1="50%"
+              y1="50%"
+              x2={`calc(50% + ${endX}px)`}
+              y2={`calc(50% + ${endY}px)`}
+              stroke={isActive ? item.color : "hsl(0 0% 18%)"}
+              strokeWidth={isActive ? 2 : 1}
+              strokeDasharray={isActive ? "0" : "6 4"}
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={isInView ? { pathLength: 1, opacity: isActive ? 0.8 : 0.25 } : { pathLength: 0, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 * index, ease: "easeOut" }}
+            />
+            {/* Travelling dot */}
+            {isInView && (
+              <>
+                <motion.circle
+                  r={isActive ? 4 : 3}
+                  fill={item.color}
+                  initial={{ offsetDistance: "0%" }}
+                  animate={{
+                    cx: ["50%", `calc(50% + ${endX}px)`, "50%"],
+                    cy: ["50%", `calc(50% + ${endY}px)`, "50%"],
+                  }}
+                  transition={{
+                    duration: 2.5 + index * 0.3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.4,
+                  }}
+                />
+                <motion.circle
+                  r={isActive ? 8 : 6}
+                  fill={`url(#dot-glow-${index})`}
+                  opacity={0.5}
+                  animate={{
+                    cx: ["50%", `calc(50% + ${endX}px)`, "50%"],
+                    cy: ["50%", `calc(50% + ${endY}px)`, "50%"],
+                  }}
+                  transition={{
+                    duration: 2.5 + index * 0.3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.4,
+                  }}
+                />
+              </>
+            )}
+          </g>
         );
       })}
     </svg>
