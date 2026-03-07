@@ -251,49 +251,25 @@ const ProjectTypes = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8 md:mb-16">
-          <motion.div
-            className="text-center md:text-left flex-1"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+        <motion.div
+          className="text-center mb-8 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.p
+            className="text-primary font-medium tracking-[0.3em] uppercase text-sm mb-4"
+            initial={{ opacity: 0, letterSpacing: "0.5em" }}
+            animate={isInView ? { opacity: 1, letterSpacing: "0.3em" } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.p
-              className="text-primary font-medium tracking-[0.3em] uppercase text-sm mb-4"
-              initial={{ opacity: 0, letterSpacing: "0.5em" }}
-              animate={isInView ? { opacity: 1, letterSpacing: "0.3em" } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Click & Drag
-            </motion.p>
-            <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl">
-              Project Types I{" "}
-              <span className="text-gradient">Specialize In</span>
-            </h2>
-          </motion.div>
-
-          {/* Illustration */}
-          <motion.div
-            className="flex-shrink-0 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 relative"
-            initial={{ opacity: 0, x: 60, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
-          >
-            <motion.img
-              src={projectTypesIllustration}
-              alt="Creative design workspace illustration"
-              className="w-full h-full object-contain drop-shadow-2xl"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-            {/* Glow behind illustration */}
-            <motion.div
-              className="absolute inset-0 -z-10 rounded-full bg-primary/10 blur-3xl"
-              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </div>
+            Click & Drag
+          </motion.p>
+          <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl">
+            Project Types I{" "}
+            <span className="text-gradient">Specialize In</span>
+          </h2>
+        </motion.div>
 
         {/* Circle Layout */}
         <div className="relative w-full aspect-square max-w-[700px] mx-auto">
@@ -378,6 +354,29 @@ const ProjectTypes = () => {
             transition={{ duration: 1, delay: 0.5 }}
           />
         </div>
+
+        {/* Illustration - Bottom Right */}
+        <motion.div
+          className="flex justify-end mt-8 md:mt-12"
+          initial={{ opacity: 0, x: 60, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
+        >
+          <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72">
+            <motion.img
+              src={projectTypesIllustration}
+              alt="Creative design services infographic"
+              className="w-full h-full object-contain drop-shadow-2xl"
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute inset-0 -z-10 rounded-full bg-primary/10 blur-3xl"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
