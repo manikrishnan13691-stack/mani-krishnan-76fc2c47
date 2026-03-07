@@ -280,30 +280,8 @@ const ProjectTypes = () => {
           {/* SVG Connection Lines - Mobile */}
           <div className="block md:hidden">
             <ConnectionLines total={projectTypes.length} radius={140} isInView={isInView} activeIndex={activeIndex} />
-        </div>
-
-        {/* Illustration - Bottom Right */}
-        <motion.div
-          className="flex justify-end mt-8 md:mt-12"
-          initial={{ opacity: 0, x: 60, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
-        >
-          <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72">
-            <motion.img
-              src={projectTypesIllustration}
-              alt="Creative design services infographic"
-              className="w-full h-full object-contain drop-shadow-2xl"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute inset-0 -z-10 rounded-full bg-primary/10 blur-3xl"
-              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            />
           </div>
-        </motion.div>
+
           {/* Center hub */}
           <motion.div
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
@@ -376,6 +354,29 @@ const ProjectTypes = () => {
             transition={{ duration: 1, delay: 0.5 }}
           />
         </div>
+
+        {/* Illustration - Bottom Right */}
+        <motion.div
+          className="flex justify-end mt-8 md:mt-12"
+          initial={{ opacity: 0, x: 60, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
+        >
+          <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72">
+            <motion.img
+              src={projectTypesIllustration}
+              alt="Creative design services infographic"
+              className="w-full h-full object-contain drop-shadow-2xl"
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute inset-0 -z-10 rounded-full bg-primary/10 blur-3xl"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
