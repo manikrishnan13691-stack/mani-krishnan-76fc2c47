@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Palette, Globe, Package, Music, Smartphone, PenTool, Megaphone, Film } from "lucide-react";
+import projectTypesIllustration from "@/assets/project-types-illustration.png";
 
 const projectTypes = [
   { icon: Palette, label: "Brand Identity", count: "15+", color: "hsl(15 90% 60%)" },
