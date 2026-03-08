@@ -271,112 +271,101 @@ const ProjectTypes = () => {
           </h2>
         </motion.div>
 
-        {/* Circle Layout */}
-        <div className="relative w-full aspect-square max-w-[700px] mx-auto">
-          {/* SVG Connection Lines - Desktop */}
-          <div className="hidden md:block">
-            <ConnectionLines total={projectTypes.length} radius={280} isInView={isInView} activeIndex={activeIndex} />
-          </div>
-          {/* SVG Connection Lines - Mobile */}
-          <div className="block md:hidden">
-            <ConnectionLines total={projectTypes.length} radius={140} isInView={isInView} activeIndex={activeIndex} />
-          </div>
-
-          {/* Center hub */}
+        {/* Layout: Illustration Left + Circle Right */}
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          {/* Illustration - Left Side */}
           <motion.div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
+            className="w-full md:w-1/2 flex justify-center"
+            initial={{ opacity: 0, x: -60, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
           >
-            {/* Pulsing rings */}
-            {[0, 1, 2].map((i) => (
-              <motion.div
-                key={i}
-                className="absolute inset-0 rounded-full border border-primary/20"
-                style={{ margin: `${-12 - i * 16}px` }}
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.3, 0, 0.3],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  delay: i * 0.5,
-                  ease: "easeOut",
-                }}
+            <div className="relative w-full aspect-square max-w-[700px]">
+              <motion.img
+                src={projectTypesIllustration}
+                alt="Creative design services infographic"
+                className="w-full h-full object-contain drop-shadow-2xl"
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               />
-            ))}
-
-            <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-card border border-border flex items-center justify-center relative">
               <motion.div
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-transparent"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 -z-10 rounded-full bg-primary/10 blur-3xl"
+                animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              <div className="text-center relative z-10">
-                <motion.p
-                  className="font-display font-bold text-2xl md:text-3xl text-gradient"
-                  animate={
-                    activeIndex !== null
-                      ? { scale: [1, 1.1, 1] }
-                      : {}
-                  }
-                  transition={{ duration: 0.3 }}
-                >
-                  {activeIndex !== null ? projectTypes[activeIndex].count : "99+"}
-                </motion.p>
-                <p className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-wider font-medium">
-                  {activeIndex !== null ? projectTypes[activeIndex].label : "Total Projects"}
-                </p>
-              </div>
             </div>
           </motion.div>
 
-          {/* Orbital circle items */}
-          {projectTypes.map((item, i) => (
-            <CircleItem
-              key={item.label}
-              item={item}
-              index={i}
-              total={projectTypes.length}
-              isInView={isInView}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-            />
-          ))}
+          {/* Circle Layout - Right Side */}
+          <div className="relative w-full md:w-1/2 aspect-square max-w-[700px]">
+            {/* SVG Connection Lines - Desktop */}
+            <div className="hidden md:block">
+              <ConnectionLines total={projectTypes.length} radius={280} isInView={isInView} activeIndex={activeIndex} />
+            </div>
+            {/* SVG Connection Lines - Mobile */}
+            <div className="block md:hidden">
+              <ConnectionLines total={projectTypes.length} radius={140} isInView={isInView} activeIndex={activeIndex} />
+            </div>
 
-          {/* Outer decorative ring */}
-          <motion.div
-            className="absolute inset-8 md:inset-4 rounded-full border border-dashed border-border/30"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 0.5 }}
-          />
-        </div>
-
-        {/* Illustration - Bottom Right */}
-        <motion.div
-          className="flex justify-end mt-8 md:mt-12"
-          initial={{ opacity: 0, x: 60, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
-        >
-          <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72">
-            <motion.img
-              src={projectTypesIllustration}
-              alt="Creative design services infographic"
-              className="w-full h-full object-contain drop-shadow-2xl"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
+            {/* Center hub */}
             <motion.div
-              className="absolute inset-0 -z-10 rounded-full bg-primary/10 blur-3xl"
-              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={isInView ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
+            >
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  className="absolute inset-0 rounded-full border border-primary/20"
+                  style={{ margin: `${-12 - i * 16}px` }}
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
+                  transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.5, ease: "easeOut" }}
+                />
+              ))}
+              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-card border border-border flex items-center justify-center relative">
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-transparent"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                />
+                <div className="text-center relative z-10">
+                  <motion.p
+                    className="font-display font-bold text-2xl md:text-3xl text-gradient"
+                    animate={activeIndex !== null ? { scale: [1, 1.1, 1] } : {}}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {activeIndex !== null ? projectTypes[activeIndex].count : "99+"}
+                  </motion.p>
+                  <p className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-wider font-medium">
+                    {activeIndex !== null ? projectTypes[activeIndex].label : "Total Projects"}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Orbital circle items */}
+            {projectTypes.map((item, i) => (
+              <CircleItem
+                key={item.label}
+                item={item}
+                index={i}
+                total={projectTypes.length}
+                isInView={isInView}
+                activeIndex={activeIndex}
+                setActiveIndex={setActiveIndex}
+              />
+            ))}
+
+            {/* Outer decorative ring */}
+            <motion.div
+              className="absolute inset-8 md:inset-4 rounded-full border border-dashed border-border/30"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={isInView ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 1, delay: 0.5 }}
             />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
