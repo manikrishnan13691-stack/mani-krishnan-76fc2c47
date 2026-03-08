@@ -272,15 +272,15 @@ const ProjectTypes = () => {
         </motion.div>
 
         {/* Layout: Illustration Left + Circle Right */}
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          {/* Illustration - Left Side */}
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12">
+          {/* Illustration - Left Side (stacks above on mobile) */}
           <motion.div
             className="w-full md:w-1/2 flex justify-center"
             initial={{ opacity: 0, x: -60, scale: 0.8 }}
             animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
           >
-            <div className="relative w-full aspect-square max-w-[700px]">
+            <div className="relative w-3/4 md:w-full aspect-square max-w-[700px]">
               <motion.img
                 src={projectTypesIllustration}
                 alt="Creative design services infographic"
